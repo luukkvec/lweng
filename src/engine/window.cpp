@@ -18,10 +18,10 @@ namespace lweng
 	{
 		m_window = SDL_CreateWindow(
 			title,
+			SDL_WINDOWPOS_CENTERED,
+			SDL_WINDOWPOS_CENTERED,
 			w,
 			h,
-			SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED,
 			0
 		);
 
