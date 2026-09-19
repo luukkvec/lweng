@@ -11,7 +11,7 @@ namespace lweng
 		~Window();
 
 		bool create(const char* title, int w, int h);
-		void dest();
+		void destroy();
 
 		void process_events();
 
