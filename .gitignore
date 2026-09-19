@@ -1,0 +1,13 @@
+# folders
+
+debug/
+.vs/
+.git/
+
+# extensions
+
+*.sln
+*.vcxproj
+*.filters
+*.user
+
