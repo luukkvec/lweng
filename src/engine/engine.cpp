@@ -1,4 +1,5 @@
 #include "engine.h"
+#include <SDL.h>
 #include <iostream>
 #include <string>
 
@@ -13,6 +14,26 @@ namespace lweng
     {
         std::cout << "initialized\n";
 
+        if (SDL_Init(SDL_INIT_VIDEO) < 0)
+        {
+            std::cout << "failed to initialize SDL! "
+                << SDL_GetError()
+                << "\n";
+
+            return false;
+        }
+
+        std::cout << "SDL version: "
+            << SDL_MAJOR_VERSION << "."
+            << SDL_MINOR_VERSION << "."
+            << SDL_PATCHLEVEL << "\n";
+
+        if (!m_window.create("lweng", 1280, 720))
+        {
+            SDL_Quit();
+            return false;
+        }
+
         m_running = true;
 
         return true;
@@ -22,22 +43,17 @@ namespace lweng
     {
         string input;
 
-        while (m_running)
+        while (m_running && m_window.is_open())
         {
-            std::cout << "running\n";
-
-            getline(cin, input);
-
-            if (!input.empty())
-            {
-                m_running = false;
-            }
+            m_window.process_events();
         }
     }
 
     void Engine::close()
     {
         std::cout << "closing\n";
+
+        m_window.destroy();
 
         m_running = false;
     }

@@ -1,18 +1,18 @@
-#include "engine.h"
+#include "engine/engine.h"
+#ifdef main
+#undef main
+#endif
 #include <iostream>
 
 int main()
 {
-    lweng::Engine engine;
+	lweng::Engine engine;
 
-    if (!engine.init())
-    {
-        std::cout << "engine failed to initialize!\n";
-        return -1;
-    }
-    engine.run();
-    engine.close();
+	if (!engine.init())
+		return -1;
+	engine.run();
+	engine.close();
 
-    return 0;
+	return 0;
 }
 

@@ -16,23 +16,22 @@ namespace lweng
 
 	bool Window::create(const char* title, int w, int h)
 	{
-		if (!SDL_Init(SDL_INIT_VIDEO))
-		{
-			std::cout << "failed to initialize SDL! "
-				      << SDL_GetError()
-					  << "\n";
-
-			return false;
-		}
-
 		m_window = SDL_CreateWindow(
 			title,
 			w,
 			h,
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOW_SHOWN
+			0
 		);
+
+		int actual_w;
+		int actual_h;
+
+		SDL_GetWindowSize(m_window, &actual_w, &actual_h);
+
+		std::cout << "Window size: "
+			<< actual_w << "x" << actual_h << "\n";
 
 		if (!m_window)
 		{
