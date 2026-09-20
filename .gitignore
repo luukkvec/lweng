@@ -3,6 +3,7 @@
 debug/
 .vs/
 .git/
+.vscode/
 
 # extensions
 
@@ -10,4 +11,5 @@ debug/
 *.vcxproj
 *.filters
 *.user
+*.pdb
 
