@@ -4,7 +4,10 @@
 
 namespace lweng
 {
-	Renderer::Renderer()
+	Renderer::Renderer() :
+    m_window(nullptr),
+    m_vao(0),
+    m_vbo(0)
 	{
 	}
 
@@ -25,6 +28,49 @@ namespace lweng
             m_window = nullptr;
             return false;
         }
+
+        float vertices[] =
+        {
+            0.0f, 0.5f,
+            -0.5f, -0.5f,
+            0.5f, -0.5f
+        };
+
+        // create vbo
+
+        glGenBuffers(1, &m_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+
+        glBufferData(
+            GL_ARRAY_BUFFER,
+            sizeof(vertices),
+            vertices,
+            GL_STATIC_DRAW
+        );
+
+        // create vao
+
+        glGenVertexArrays(1, &m_vao);
+        glBindVertexArray(m_vao);
+
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+
+        // make vertex thing do vertex stuff
+
+        glVertexAttribPointer(
+            0,
+            2,
+            GL_FLOAT,
+            GL_FALSE,
+            2 * sizeof(float),
+            (void*)0
+        );
+
+        // unbind vertex
+
+        glBindVertexArray(0);
+
+        glEnableVertexAttribArray(0);
 
         std::cout << "OpenGL "
             << GLAD_VERSION_MAJOR(version)
