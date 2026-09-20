@@ -2,4 +2,4 @@
 
 ### lightweight engine
 
-engine/framework for making bullshit
+engine/framework for making stuff
