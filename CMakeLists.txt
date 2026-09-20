@@ -13,6 +13,7 @@ add_executable(lweng
     src/engine/graphics/shader.cpp
     third_party/glad/src/gl.c
     src/engine/game/camera.cpp
+    src/engine/input.cpp
 )
 
 target_include_directories(lweng PRIVATE
