@@ -4,6 +4,7 @@ debug/
 .vs/
 .git/
 .vscode/
+build/
 
 # extensions
 
