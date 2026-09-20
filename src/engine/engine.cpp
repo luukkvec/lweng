@@ -40,6 +40,9 @@ namespace lweng
             return false;
         }
 
+        m_camera.set_perspective(45.0f, 1280.0f / 720.0f, 0.1f, 100.0f);
+        m_camera.set_position({0.0f, 0.0f, 8.0f});
+
         m_running = true;
 
         return true;
@@ -57,7 +60,7 @@ namespace lweng
 
             // drawing here
 
-            m_renderer.present();
+            m_renderer.present(m_camera);
         }
     }
 

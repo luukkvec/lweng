@@ -18,7 +18,7 @@ namespace lweng
 
     bool Shader::create(const char* vertex_source, const char* fragment_source)
     {
-                GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+        GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 
         glShaderSource(
             vertex_shader,

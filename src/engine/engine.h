@@ -2,6 +2,7 @@
 
 #include "window.h"
 #include "graphics/renderer.h"
+#include "game/camera.h"
 
 namespace lweng
 {
@@ -19,5 +20,6 @@ namespace lweng
 		bool m_running;
 		Window m_window;
 		Renderer m_renderer;
+		Camera m_camera;
 	};
 }

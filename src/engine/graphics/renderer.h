@@ -4,6 +4,7 @@
 #include <glad/gl.h>
 
 #include "shader.h"
+#include "engine/game/camera.h"
 
 namespace lweng
 {
@@ -17,7 +18,7 @@ namespace lweng
         void destroy();
 
         void clear();
-        void present();
+        void present(const Camera& camera);
 
     private:
         SDL_Window* m_window;

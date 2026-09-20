@@ -17,7 +17,7 @@ namespace lweng
     const char* vertex_shader_source = R"(
     #version 330 core
 
-    layout (location = 0) in vec2 aPos;
+    layout (location = 0) in vec3 aPos;
 
     uniform mat4 u_model;
     uniform mat4 u_view;
@@ -25,7 +25,7 @@ namespace lweng
 
     void main()
     {
-        gl_Position = vec4(aPos, 0.0, 1.0);
+        gl_Position = u_projection * u_view * u_model * vec4(aPos, 1.0);
     }
     )";
 
@@ -138,10 +138,15 @@ namespace lweng
         glClear(GL_COLOR_BUFFER_BIT);
     }
 
-    void Renderer::present()
+    void Renderer::present(const Camera& camera)
     {
-
         m_shader.bind();
+
+        glm::mat4 model(1.0f);
+
+        m_shader.set_mat4("u_model", model);
+        m_shader.set_mat4("u_view", camera.get_view_matrix());
+        m_shader.set_mat4("u_projection", camera.get_projection_matrix());
 
         glBindVertexArray(m_vao);
 
