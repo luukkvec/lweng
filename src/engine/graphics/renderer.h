@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include <glad/gl.h>
 
 namespace lweng
 {
@@ -18,5 +19,8 @@ namespace lweng
 
     private:
         SDL_Window* m_window;
+
+        GLuint m_vao;
+        GLuint m_vbo;
     };
 }
