@@ -16,7 +16,7 @@ namespace lweng
         void bind() const;
         void unbind() const;
 
-        GLuint get_id() const;
+        GLuint get_program() const;
     private:
         GLuint m_program;
     };
