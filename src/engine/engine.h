@@ -1,6 +1,7 @@
 #pragma once
 
 #include "window.h"
+#include "graphics/renderer.h"
 
 namespace lweng
 {
@@ -17,5 +18,6 @@ namespace lweng
 	private:
 		bool m_running;
 		Window m_window;
+		Renderer m_renderer;
 	};
 }

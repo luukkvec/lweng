@@ -34,6 +34,13 @@ namespace lweng
             return false;
         }
 
+        if (!m_renderer.create(m_window.getWindow()))
+        {
+            m_window.destroy();
+            SDL_Quit();
+            return false;
+        }
+
         m_running = true;
 
         return true;
@@ -46,6 +53,12 @@ namespace lweng
         while (m_running && m_window.is_open())
         {
             m_window.process_events();
+
+            m_renderer.clear();
+
+            // drawing here
+
+            m_renderer.present();
         }
     }
 
@@ -53,6 +66,7 @@ namespace lweng
     {
         std::cout << "closing\n";
 
+        m_renderer.destroy();
         m_window.destroy();
 
         m_running = false;
