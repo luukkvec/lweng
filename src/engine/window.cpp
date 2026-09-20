@@ -25,14 +25,6 @@ namespace lweng
 			0
 		);
 
-		int actual_w;
-		int actual_h;
-
-		SDL_GetWindowSize(m_window, &actual_w, &actual_h);
-
-		std::cout << "Window size: "
-			<< actual_w << "x" << actual_h << "\n";
-
 		if (!m_window)
 		{
 			std::cout << "failed to initialize window! "

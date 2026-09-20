@@ -1,7 +1,6 @@
 #include "engine.h"
 #include <SDL.h>
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -23,7 +22,7 @@ namespace lweng
             return false;
         }
 
-        std::cout << "SDL version: "
+        std::cout << "sdl version: "
             << SDL_MAJOR_VERSION << "."
             << SDL_MINOR_VERSION << "."
             << SDL_PATCHLEVEL << "\n";

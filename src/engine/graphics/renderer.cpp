@@ -46,8 +46,8 @@ namespace lweng
     {
         SDL_SetRenderDrawColor(
             m_renderer,
-            30,
-            30,
+            15,
+            15,
             30,
             255
         );
