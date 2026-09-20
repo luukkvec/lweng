@@ -9,6 +9,7 @@ add_executable(lweng
     src/main.cpp
     src/engine/engine.cpp
     src/engine/graphics/renderer.cpp
+    src/engine/window.cpp
     third_party/glad/src/gl.c
 )
 
