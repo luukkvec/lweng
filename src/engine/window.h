@@ -20,6 +20,7 @@ namespace lweng
 		SDL_Window* getWindow() const;
 	private:
 		SDL_Window* m_window;
+		SDL_GLContext m_context;
 		bool m_open;
 	};
 }

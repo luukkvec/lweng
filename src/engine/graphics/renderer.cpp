@@ -1,62 +1,63 @@
 #include "renderer.h"
+#include <glad/gl.h>
 #include <iostream>
 
 namespace lweng
 {
-    Renderer::Renderer()
-        : m_renderer(nullptr)
-    {
-    }
+	Renderer::Renderer()
+	{
+	}
 
-    Renderer::~Renderer()
-    {
-        destroy();
-    }
+	Renderer::~Renderer()
+	{
+		destroy();
+	}
 
     bool Renderer::create(SDL_Window* window)
     {
-        m_renderer = SDL_CreateRenderer(
-            window,
-            -1,
-            SDL_RENDERER_ACCELERATED
-        );
+        m_window = window;
 
-        if (!m_renderer)
+        int version = gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
+
+        if (version == 0)
         {
-            std::cout << "failed to create renderer! "
-                      << SDL_GetError()
-                      << "\n";
-
+            std::cout << "failed to initialize GLAD!\n";
+            m_window = nullptr;
             return false;
         }
+
+        std::cout << "OpenGL "
+            << GLAD_VERSION_MAJOR(version)
+            << "."
+            << GLAD_VERSION_MINOR(version)
+            << "\n";
+
+        std::cout << "renderer "
+            << glGetString(GL_RENDERER)
+            << "\n";
 
         return true;
     }
 
     void Renderer::destroy()
     {
-        if (m_renderer) 
-        {
-            SDL_DestroyRenderer(m_renderer);
-            m_renderer = nullptr;
-        }
+        m_window = nullptr;
     }
 
     void Renderer::clear()
     {
-        SDL_SetRenderDrawColor(
-            m_renderer,
-            15,
-            15,
-            30,
-            255
+        glClearColor(
+            0.1f,
+            0.1f,
+            0.15f,
+            1.0f
         );
 
-        SDL_RenderClear(m_renderer);
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 
     void Renderer::present()
     {
-        SDL_RenderPresent(m_renderer);
+        SDL_GL_SwapWindow(m_window);
     }
 }

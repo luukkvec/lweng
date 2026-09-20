@@ -33,7 +33,7 @@ namespace lweng
             return false;
         }
 
-        if (!m_renderer.create(m_window.getWindow()))
+        if (!m_renderer.create(m_window.getWindow())) // error E0140 on m_windownot anymore
         {
             m_window.destroy();
             SDL_Quit();
