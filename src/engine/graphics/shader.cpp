@@ -1,11 +1,13 @@
 #include "shader.h"
 
+#include <glm.hpp>
+#include <gtc/type_ptr.hpp>
 #include <iostream>
 
 // this took way too long
 namespace lweng
 {
-    Shader::Shader() : m_program(0) 
+    Shader::Shader() : m_program(0)
     {        
     }
 
@@ -161,5 +163,44 @@ namespace lweng
     GLuint Shader::get_program() const
     {
         return m_program;
+    }
+
+    GLint Shader::get_uniform_location(const std::string& name) const
+    {
+        auto it = m_uniform_cache.find(name);
+        if (it != m_uniform_cache.end())
+        {
+            return it->second;
+        }
+
+        GLint location = glGetUniformLocation(m_program, name.c_str());
+
+        if (location == -1)
+        {
+            std::cout << "warning! uniform '" << name << "' not found or unused\n";
+        }
+
+        m_uniform_cache[name] = location;
+        return location;
+    }
+
+    void Shader::set_mat4(const std::string& name, const glm::mat4& value) const
+    {
+        glUniformMatrix4fv(get_uniform_location(name), 1, GL_FALSE, glm::value_ptr(value));
+    }
+
+    void Shader::set_vec3(const std::string& name, const glm::vec3& value) const
+    {
+        glUniform3fv(get_uniform_location(name), 1, glm::value_ptr(value));
+    }
+
+    void Shader::set_int(const std::string& name, int value) const
+    {
+        glUniform1i(get_uniform_location(name), value);
+    }
+
+    void Shader::set_float(const std::string& name, float value) const
+    {
+        glUniform1f(get_uniform_location(name), value);
     }
 }

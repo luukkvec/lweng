@@ -1,5 +1,8 @@
 #include "renderer.h"
+
 #include <glad/gl.h>
+#include <glm.hpp>
+
 #include <iostream>
 
 namespace lweng
@@ -15,6 +18,10 @@ namespace lweng
     #version 330 core
 
     layout (location = 0) in vec2 aPos;
+
+    uniform mat4 u_model;
+    uniform mat4 u_view;
+    uniform mat4 u_projection;
 
     void main()
     {
@@ -135,10 +142,6 @@ namespace lweng
     {
 
         m_shader.bind();
-
-        std::cout << "Shader created: "
-          << m_shader.get_program()
-          << "\n";
 
         glBindVertexArray(m_vao);
 

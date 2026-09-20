@@ -12,12 +12,14 @@ add_executable(lweng
     src/engine/window.cpp
     src/engine/graphics/shader.cpp
     third_party/glad/src/gl.c
+    src/engine/game/camera.cpp
 )
 
 target_include_directories(lweng PRIVATE
     src
     third_party/SDL2/include
     third_party/glad/include
+    third_party/glm/glm
 )
 
 target_link_directories(lweng PRIVATE
