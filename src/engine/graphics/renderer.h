@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <glad/gl.h>
 
+#include "shader.h"
+
 namespace lweng
 {
     class Renderer
@@ -19,6 +21,7 @@ namespace lweng
 
     private:
         SDL_Window* m_window;
+        Shader m_shader;
 
         GLuint m_vao;
         GLuint m_vbo;
